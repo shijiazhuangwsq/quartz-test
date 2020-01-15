@@ -1,0 +1,54 @@
+server: 
+  port: 8081
+  servlet:
+    context-path: /quarzt
+    
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+
+spring:
+  application:
+    name: test
+  datasource:
+    url: jdbc:mysql://localhost:3306/dwl-quartz?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 2
+      max-active: 5
+      min-idle: 1
+      max-wait: 60000 
+      time-between-eviction-runs-millis: 60000 
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      max-open-prepared-statements: 20
+      remove-abandoned: true    
+      log-abandoned: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  resources:
+    static-locations: classpath:/
+
+#    ip-address: 192.168.132.47
+
+
+mybatis:
+  configLocation: classpath:mybatis.xml
+
+pagehelper:
+  helper-dialect: mysql
+  row-bounds-with-count: true
+  pageSizeZero: true
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
